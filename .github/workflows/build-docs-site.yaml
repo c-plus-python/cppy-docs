@@ -44,7 +44,7 @@ jobs:
       - name: Compile Standards
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: $COMPILE_LIST
+          root_file: "$COMPILE_LIST"
           work_in_root_file_dir: true
                 
       - name: Prepare for Writerside Deployment
