@@ -76,7 +76,7 @@ for entry in entries:
 with open('pages_src/resources/std_checksum.toml', 'w') as f:
     for id in new_checksum_data:
         checksum, last_modified = new_checksum_data[id].values()
-        f.write(f'[{id}]\nchecksum = "{checksum}"\nlast_modified = "{last_modified.strftime("%Y-%m-%dT%H:%M:%SZ")}"\n\n')
+        f.write(f'[{id}]\nchecksum = "{checksum}"\nlast_modified = {last_modified.strftime("%Y-%m-%dT%H:%M:%SZ")}\n\n')
 
 # replace @REPLACE_START to @REPLACE_END with the new table rows
 with open('pages_src/topics/standards.topic', 'r') as f:

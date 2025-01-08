@@ -3,13 +3,26 @@
         SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
 <topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
-       title="hidden" id="hidden">
+       id="hidden">
 
-    <p>
+    <title><code>helper_page.hidden</code></title>
+
+    <warning>
         This page is intended to be used by automation scripts.
         It is not intended for readers. Return to the <a href="home.topic">home page</a>
         if you got here by mistake.
-    </p>
+    </warning>
 
-    <resource src="std_checksum.toml"/>
+    <chapter title="File Hooks">
+        <p>
+            The following links are added to ensure the linked files
+            are included in the built artifact.
+        </p>
+        <list>
+            <li>
+                <resource src="std_checksum.toml"/>: The checksums of the CpPy standard
+                documents.
+            </li>
+        </list>
+    </chapter>
 </topic>
