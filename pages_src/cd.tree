@@ -5,6 +5,8 @@
 <instance-profile id="cd"
                  name="CPlusPython Documentations"
                  start-page="home.topic">
+    <!-- Helper pages. For GitHub Actions automation only. -->
+    <toc-element topic="hidden.topic" hidden="true"/>
 
     <toc-element topic="home.topic"/>
     <toc-element topic="standards.topic"/>
