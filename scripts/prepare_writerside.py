@@ -64,11 +64,12 @@ for entry in entries:
             status_text = '🚫 Deprecated'
         case _:
             status_text = '❓ Unknown'
-    entry['row'] = ('<tr>'
-                   f'<td>{entry['id']}</td>'
-                   f'<td>{status_text}</td>'
-                   f'<td>{modified_time.strftime('%Y-%m-%d %H:%M:%S')} (UTC)</td>'
-                   f'<td><resource src=\"{pdf_filename}\">Download PDF</resource></td>')
+    entry['row'] =  '<tr>' \
+                   f'<td>{entry["id"]}</td>' \
+                   f'<td>{status_text}</td>' \
+                   f'<td>{modified_time.strftime('%Y-%m-%d %H:%M:%S')} (UTC)</td>' \
+                   f'<td><resource src=\"{pdf_filename}\">Download PDF</resource></td>' \
+                    '</tr>'
     new_checksum_data[entry['id']] = {'checksum': entry['checksum'], 'last_modified': modified_time}
 
 # create the new checksum file
