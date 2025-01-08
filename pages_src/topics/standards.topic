@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       id="standards">
+
+    <title>Standards</title>
+    <link-summary rel="summary-text"/>
+    <card-summary rel="summary-text"/>
+
+    <tldr>
+        <p id="summary-text">
+            The CpPy standards rule the syntax and semantics of the CpPy dialect.
+            They provide a guideline for implementing the CpPy translator and for coding in CpPy.
+        </p>
+    </tldr>
+
+    <p>
+        To maintain a professional and consistent format of the CpPy Standards,
+        all CpPy standards are written in LaTeX.
+        All downloadable files here are compiled automatically.
+    </p>
+
+    <!--
+        The contents of this page should be generated automatically with GitHub Actions.
+        The following contents should be replaced.
+    -->
+
+    <table>
+        <tr> <!-- Header -->
+            <td>Standard Version</td>
+            <td>Status</td>
+            <td>Compiled At</td>
+            <td>Action</td>
+        </tr>
+
+        <!-- @REPLACE_START -->
+
+        <tr>
+            <td>CPPR00</td>
+            <td>📝 Draft</td>
+            <td>2025-01-08 16:18:41 UTC</td>
+            <td><resource src="arbitrary-pdf.pdf">Download PDF</resource></td>
+        </tr>
+
+        <!-- @REPLACE_END -->
+    </table>
+
+</topic>

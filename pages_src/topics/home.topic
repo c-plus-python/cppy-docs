@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       id="home">
+
+    <title>Home</title>
+
+    <section-starting-page>
+        <title>CPlusPython Documentations</title>
+        <description>
+            The official knowledge base for CPlusPython.
+        </description>
+
+        <spotlight>
+            <a  href="standards.topic"
+                summary="The official standards for CpPy syntax."
+                type="documents"/>
+            <a  href="https://github.com/c-plus-python/cppy"
+                summary="The official CpPy translator repository."
+                type="development">GitHub Repository</a>
+        </spotlight>
+    </section-starting-page>
+</topic>
