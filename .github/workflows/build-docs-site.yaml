@@ -33,6 +33,10 @@ jobs:
       - name: Install Dependencies
         run: pip install -r scripts/requirements.txt
 
+      - name: Set up Homebrew
+        id: set-up-homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+
       - name: Obtain Compile List and Set Env Var
         run: |
           {
@@ -46,6 +50,9 @@ jobs:
         with:
           root_file: "${{ env.COMPILE_LIST }}"
           work_in_root_file_dir: true
+
+      - name: Install GhostScript
+        run: brew install ghostscript
                 
       - name: Prepare for Writerside Deployment
         run: python scripts/prepare_writerside.py

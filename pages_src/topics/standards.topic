@@ -41,7 +41,10 @@
             <td>CPPR00</td>
             <td>📝 Draft</td>
             <td>2025-01-08 16:18:41 UTC</td>
-            <td><resource src="arbitrary-pdf.pdf">Download PDF</resource></td>
+            <td>
+                <resource src="arbitrary-pdf.pdf">Download PDF</resource><br/>
+                MD5 Checksum: <code>@MD5_CHECKSUMS</code>
+            </td>
         </tr>
 
         <!-- @REPLACE_END -->
