@@ -26,6 +26,10 @@
 % Styling
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{1em}
+\setlist[itemize]{topsep=0pt, label=\textendash, leftmargin=1em}
+\newenvironment{dashlist}
+    {\begin{itemize}\parcountoff}
+    {\end{itemize}\parcounton}
 
 % Variables for Header & Footer
 % use \renewcommand in the document to set the values
