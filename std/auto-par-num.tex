@@ -20,7 +20,7 @@
 \AddToHook{para/begin}
     {\ifbool{parnumflag}{%
         \stepcounter{parcount}%
-        \makebox[0pt][r]{\texttt{\small\theparcount\quad}}}{}%
+        \makebox[0pt][r]{{\ttfamily\mdseries\small\theparcount\quad}}}{}%
     }
 
 \makeatletter  % Hack to use @-commands in a non-style file.

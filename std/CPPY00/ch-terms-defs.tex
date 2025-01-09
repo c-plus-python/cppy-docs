@@ -1,0 +1,49 @@
+\section{Terms and Definitions}
+
+For the sake of clarity and consistency, rigorous definitions of terms used in this
+Standard are provided herein. For the terms whose definitions are explicitly provided
+in this section, they shall not be considered as referring, either implicitly or
+explicitly, to any other definitions in any other document. For terms that need to be
+defined and whose definitions are not provided in this section, such definitions shall
+be given by footnotes in their first occurrence in the text.
+
+
+\subsection{{\ttfamily compiler}, {\ttfamily interpreter}, and {\ttfamily translator}}
+
+They shall all refer to a program whose main function is to translate source code written
+in CpPy into Python code.
+
+\inlinenote Albeit in general context, the three terms refer to different types of
+code mechanisms, in the context of this Standard, in which mechanisms for CpPy are
+defined, the three terms are used interchangeably.
+
+\inlinenote To reduce ambiguity, the term \texttt{translator} shall be used. However,
+when the context is clear, the terms \texttt{compiler} and \texttt{interpreter} may also
+be used.
+
+
+\subsection{{\ttfamily implementation}}
+
+A single or a set of programs that provide the functionalities of a CpPy translator.
+
+
+\subsection{{\ttfamily implementation-defined behaviour}}
+
+Behaviours that are not specified by this Standard, but are required to be defined by
+the implementation. The implementation shall document such behaviours.
+
+
+\subsection{{\ttfamily shall} and {\ttfamily shall not}}
+
+In this Standard, a statement that uses the term \texttt{shall} indicates a requirement.
+A statement that uses the term \texttt{shall not} indicates a prohibition.
+
+A violation of a requirement or a prohibition results in an undefined behaviour.
+
+
+\subsection{{\ttfamily undefined behaviour}}
+
+Behaviours that are not specified by this Standard.
+
+\inlinenote An \texttt{undefined behaviour} may or may not be a result of an errorneous
+program.
