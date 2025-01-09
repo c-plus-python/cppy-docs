@@ -1,15 +1,35 @@
 % The root TEX file for the CPPY00 standard
 \input{../std-preambles.tex}
 
-\title{
-    Official Standard \\
-    for the C-Dialect for Python \\
-    (CPPY00)
-}
-\date{ 2025-01-08}
-\author{The CPlusPython Community}
+% Configure variables
+\renewcommand{\hdrStdVer}{CPPY00}
+\setbool{hdrIsDraft}{true}
 
 \begin{document}
+
 \include{title-page}
-Hello, World!
+
+\input{../hdr-ftr.tex}
+\renewcommand{\sectionmark}[1]{\markboth{#1}{}}
+
+\newgeometry{top=4cm, bottom=3cm, left=3cm, right=2cm}
+\pagenumbering{roman}
+
+\begingroup
+\setlength{\parskip}{0pt}
+\phantomsection
+\addcontentsline{toc}{section}{Contents}
+\tableofcontents
+\endgroup
+
+\input{../auto-par-num.tex}
+
+% files for different sections are included herein
+% each single file must contain one and only one \section command
+
+\include{foreword}
+
+\clearpage
+\pagenumbering{arabic}
+
 \end{document}

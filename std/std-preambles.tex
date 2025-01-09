@@ -1,8 +1,39 @@
-\documentclass[titlepage,twoside]{article}
+\documentclass[titlepage,twoside,11pt]{article}
 
 % Packages
-\usepackage[margin=2cm]{geometry}
-\usepackage{mathptmx}
-\usepackage{changepage}
+\usepackage[
+    left=3cm,
+    right=2cm,
+    top=2cm,
+    bottom=3cm,
+    a4paper]
+    {geometry}                      % Set page margins
+\usepackage{mathptmx}               % Times New Roman font
+\usepackage{changepage}             % Adjustwidth environment
 
-\usepackage{txfonts}
+\usepackage{txfonts}                % Symbols (e.g. \copyright)
+
+\usepackage{enumitem}               % Lists
+\usepackage{etoolbox}
+\usepackage{fmtcount}
+
+\usepackage{lipsum}                 % Dummy text, temporary
+
+\usepackage{fancyhdr}
+\usepackage{nameref}
+\usepackage[hidelinks]{hyperref}
+
+% Styling
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1em}
+
+% Variables for Header & Footer
+% use \renewcommand in the document to set the values
+\newcommand{\hdrStdVer}{CPPY??}
+\newbool{hdrIsDraft}
+
+% for displaying un-numbered sections in the header and toc
+\newcommand{\nsection}[1]{%
+    \addcontentsline{toc}{section}{#1}%
+    \section*{#1 \protect\markboth{#1}{#1}}%
+}

@@ -112,6 +112,8 @@ for entry in entries:
 
         if len(old_pngs) != len(new_pngs):
             is_modified = True # mismatched number of pages
+            output('The document is modified. Mismatched number of pages. '\
+                   'Comparison skipped.')
         
     if not is_modified:
         for old_png, new_png in zip(old_pngs, new_pngs):
@@ -120,6 +122,8 @@ for entry in entries:
 
             if old_image.size != new_image.size:
                 is_modified = True
+                output('The document is modified. Mismatched image sizes. '\
+                       'Comparison skipped')
                 break
             
             arr_old = np.array(old_image).astype(np.float64)
@@ -129,6 +133,7 @@ for entry in entries:
             output(f'PNG {old_png} \t RMSE = {rmse}')
             if rmse > 1:
                 is_modified = True
+                output('RMSE exceeds threshold. The document is modified.')
                 break
 
     # move the file

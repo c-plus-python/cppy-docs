@@ -1,0 +1,9 @@
+% This file configures the header and footer for the documents.
+% Include this file after beginning the document.
+
+\pagestyle{fancy}
+\fancyhead[EL,OR]{\hdrStdVer \ Standard \ifbool{hdrIsDraft}{(Draft)}{}}
+\fancyhead[ER,OL]{\bfseries The CPlusPython Community}
+\fancyfoot[EL,OR]{\thepage}
+\fancyfoot[C]{\leftmark}
+\fancyfoot[ER,OL]{\ifnumequal{\thesection}{0}{}{\S\thesection}}

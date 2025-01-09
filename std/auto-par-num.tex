@@ -1,0 +1,31 @@
+% This file contains code for automatic paragraph numbering.
+% This file should be included AFTER the TOC and BEFORE any sections.
+
+% Paragraph numbering
+% The following snippet was adapted from StackExchange
+%     https://tex.stackexchange.com/questions/643303/fully-automatic-numbering-of-paragraphs
+% Flag for enabling/disabling paragraph numbering
+\newbool{parnumflag}
+\setbool{parnumflag}{false} % disabled by default
+\newcommand{\parcountoff}{\setbool{parnumflag}{false}}
+\newcommand{\parcounton}{\setbool{parnumflag}{true}}
+% Create a new counter, set it to 0
+\newcounter{parcount}
+\setcounter{parcount}{0}
+
+%%% Reset paragraph counter when a new section is started.
+\AddToHook{cmd/section/before}{\setcounter{parcount}{0}}
+
+% Adds number at the beginning of the paragraph
+\AddToHook{para/begin}
+    {\ifbool{parnumflag}{%
+        \stepcounter{parcount}%
+        \makebox[0pt][r]{\texttt{\small\theparcount\quad}}}{}%
+    }
+
+\makeatletter  % Hack to use @-commands in a non-style file.
+\pretocmd{\@ssect}{\parcountoff}{}{}
+\apptocmd{\@ssect}{\parcounton}{}{}
+\pretocmd{\@sect}{\parcountoff}{}{}
+\apptocmd{\@sect}{\parcounton}{}{}
+\makeatother % Hack to use @-commands in a non-style file.
