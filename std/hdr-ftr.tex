@@ -5,5 +5,5 @@
 \fancyhead[EL,OR]{\hdrStdVer \ Standard \ifbool{hdrIsDraft}{(Draft)}{}}
 \fancyhead[ER,OL]{\bfseries The CPlusPython Community}
 \fancyfoot[EL,OR]{\thepage}
-\fancyfoot[C]{\leftmark}
+\fancyfoot[C]{\ifstrequal{\leftmark}{CONTENTS}{Contents}{\leftmark}}
 \fancyfoot[ER,OL]{\ifnumequal{\thesection}{0}{}{\S\thesection}}

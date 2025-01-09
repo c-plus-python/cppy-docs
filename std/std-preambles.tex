@@ -34,6 +34,26 @@
 
 % for displaying un-numbered sections in the header and toc
 \newcommand{\nsection}[1]{%
-    \addcontentsline{toc}{section}{#1}%
     \section*{#1 \protect\markboth{#1}{#1}}%
+    \addcontentsline{toc}{section}{#1}%
 }
+
+\makeatletter
+    \def\cleardoublepage{\clearpage%
+        \if@twoside
+            \ifodd\c@page\else
+                \setbool{parnumflag}{false}
+                \vspace*{\fill}
+                \hfill
+                \begin{center}
+                This page is intentionally left blank.
+                \end{center}
+                \vspace{\fill}
+                % \thispagestyle{empty}
+                \newpage
+                \if@twocolumn\hbox{}\newpage\fi
+                \setbool{parnumflag}{true}
+            \fi
+        \fi
+    }
+\makeatother
