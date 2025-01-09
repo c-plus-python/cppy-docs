@@ -55,7 +55,9 @@ for entry in entries:
         for chunk in iter(lambda: f.read(4096), b""):
             hash_md5.update(chunk)
     entry['checksum'] = hash_md5.hexdigest()
+
     pdf_filename = pdf_path.split('/')[-1]
+    os.makedirs(f'{AUTOMATION_CACHE_DIR}/{pdf_filename}', exist_ok=False)
 
     # download old PDF
     response = requests.get(GITHUB_PAGES_URL + 'resources/' + pdf_filename)
@@ -63,7 +65,7 @@ for entry in entries:
         # old PDF does not exist
         is_modified = True
     else:
-        with open(f'{AUTOMATION_CACHE_DIR}/{pdf_filename}/old_{pdf_filename}', 'wb+') as f:
+        with open(f'{AUTOMATION_CACHE_DIR}/{pdf_filename}/old_{pdf_filename}', 'wb') as f:
             f.write(response.content)
         # convert to PNG
         command = [
