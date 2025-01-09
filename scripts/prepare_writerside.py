@@ -63,7 +63,7 @@ for entry in entries:
         # old PDF does not exist
         is_modified = True
     else:
-        with open(AUTOMATION_CACHE_DIR + f'old_{pdf_filename}', 'wb') as f:
+        with open(f'{AUTOMATION_CACHE_DIR}/{pdf_filename}/old_{pdf_filename}', 'wb') as f:
             f.write(response.content)
         # convert to PNG
         command = [
@@ -72,7 +72,7 @@ for entry in entries:
             '-dNOPAUSE',
             '-sDEVICE=png16m',
             f'-sOutputFile={AUTOMATION_CACHE_DIR}/{pdf_filename}/old/page_%03d.png',
-            f'{AUTOMATION_CACHE_DIR}/old_{pdf_filename}'
+            f'{AUTOMATION_CACHE_DIR}/{pdf_filename}/old_{pdf_filename}'
         ]
         subprocess.run(command)
 
@@ -110,7 +110,7 @@ for entry in entries:
     if is_modified: # use the new PDF
         os.rename(pdf_path, 'pages_src/resources/' + pdf_filename)
     else: # use the old PDF
-        os.rename(AUTOMATION_CACHE_DIR + f'old_{pdf_filename}', 'pages_src/resources/' + pdf_filename)
+        os.rename(f'{AUTOMATION_CACHE_DIR}/{pdf_filename}/old_{pdf_filename}', 'pages_src/resources/' + pdf_filename)
     
     # generate table row
     modified_time = datetime.now(timezone.utc) if is_modified else checksum_data[entry['id']]['last_modified']
