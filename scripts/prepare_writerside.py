@@ -58,6 +58,7 @@ for entry in entries:
 
     pdf_filename = pdf_path.split('/')[-1]
     os.makedirs(f'{AUTOMATION_CACHE_DIR}/{entry["id"]}', exist_ok=False)
+    os.makedirs(f'{AUTOMATION_CACHE_DIR}/{entry["id"]}/old', exist_ok=False)
 
     # download old PDF
     response = requests.get(GITHUB_PAGES_URL + 'resources/' + pdf_filename)
@@ -90,23 +91,24 @@ for entry in entries:
         new_pngs = sorted(os.listdir(f'{AUTOMATION_CACHE_DIR}/{entry["id"]}/new'))
 
         if len(old_pngs) != len(new_pngs):
-            is_modified = True
-        else:
-            for old_png, new_png in zip(old_pngs, new_pngs):
-                old_image = Image.open(f'{AUTOMATION_CACHE_DIR}/{entry["id"]}/old/{old_png}')
-                new_image = Image.open(f'{AUTOMATION_CACHE_DIR}/{entry["id"]}/new/{new_png}')
+            is_modified = True # mismatched number of pages
+        
+    if not is_modified:
+        for old_png, new_png in zip(old_pngs, new_pngs):
+            old_image = Image.open(f'{AUTOMATION_CACHE_DIR}/{entry["id"]}/old/{old_png}')
+            new_image = Image.open(f'{AUTOMATION_CACHE_DIR}/{entry["id"]}/new/{new_png}')
 
-                if old_image.size != new_image.size:
-                    is_modified = True
-                    break
-                
-                arr_old = np.array(old_image).astype(np.float64)
-                arr_new = np.array(new_image).astype(np.float64)
-                mse = np.mean((arr_old - arr_new) ** 2)
-                rmse = np.sqrt(mse)
-                if rmse > 1:
-                    is_modified = True
-                    break
+            if old_image.size != new_image.size:
+                is_modified = True
+                break
+            
+            arr_old = np.array(old_image).astype(np.float64)
+            arr_new = np.array(new_image).astype(np.float64)
+            mse = np.mean((arr_old - arr_new) ** 2)
+            rmse = np.sqrt(mse)
+            if rmse > 1:
+                is_modified = True
+                break
 
     # move the file
     if is_modified: # use the new PDF
