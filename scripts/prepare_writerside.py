@@ -57,7 +57,7 @@ for entry in entries:
     entry['checksum'] = hash_md5.hexdigest()
 
     pdf_filename = pdf_path.split('/')[-1]
-    os.makedirs(f'{AUTOMATION_CACHE_DIR}/{pdf_filename}', exist_ok=False)
+    os.makedirs(f'{AUTOMATION_CACHE_DIR}/{entry["id"]}', exist_ok=False)
 
     # download old PDF
     response = requests.get(GITHUB_PAGES_URL + 'resources/' + pdf_filename)
@@ -65,7 +65,7 @@ for entry in entries:
         # old PDF does not exist
         is_modified = True
     else:
-        with open(f'{AUTOMATION_CACHE_DIR}/{pdf_filename}/old_{pdf_filename}', 'wb') as f:
+        with open(f'{AUTOMATION_CACHE_DIR}/{entry["id"]}/old_{pdf_filename}', 'wb') as f:
             f.write(response.content)
         # convert to PNG
         command = [
@@ -73,28 +73,28 @@ for entry in entries:
             '-dBatch',
             '-dNOPAUSE',
             '-sDEVICE=png16m',
-            f'-sOutputFile={AUTOMATION_CACHE_DIR}/{pdf_filename}/old/page_%03d.png',
-            f'{AUTOMATION_CACHE_DIR}/{pdf_filename}/old_{pdf_filename}'
+            f'-sOutputFile={AUTOMATION_CACHE_DIR}/{entry["id"]}/old/page_%03d.png',
+            f'{AUTOMATION_CACHE_DIR}/{entry["id"]}/old_{pdf_filename}'
         ]
         subprocess.run(command)
 
     # convert PDF to PNG for comparison
     if not is_modified:
-        os.makedirs(AUTOMATION_CACHE_DIR + f'{pdf_filename}/new', exist_ok=False)
-        command[-2] = f'-sOutputFile={AUTOMATION_CACHE_DIR}/{pdf_filename}/new/page_%03d.png'
+        os.makedirs(AUTOMATION_CACHE_DIR + f'/{entry["id"]}/new', exist_ok=False)
+        command[-2] = f'-sOutputFile={AUTOMATION_CACHE_DIR}/{entry["id"]}/new/page_%03d.png'
         command[-1] = pdf_path
         subprocess.run(command)
 
         # compare PNGs
-        old_pngs = sorted(os.listdir(f'{AUTOMATION_CACHE_DIR}/{pdf_filename}/old'))
-        new_pngs = sorted(os.listdir(f'{AUTOMATION_CACHE_DIR}/{pdf_filename}/new'))
+        old_pngs = sorted(os.listdir(f'{AUTOMATION_CACHE_DIR}/{entry["id"]}/old'))
+        new_pngs = sorted(os.listdir(f'{AUTOMATION_CACHE_DIR}/{entry["id"]}/new'))
 
         if len(old_pngs) != len(new_pngs):
             is_modified = True
         else:
             for old_png, new_png in zip(old_pngs, new_pngs):
-                old_image = Image.open(f'{AUTOMATION_CACHE_DIR}/{pdf_filename}/old/{old_png}')
-                new_image = Image.open(f'{AUTOMATION_CACHE_DIR}/{pdf_filename}/new/{new_png}')
+                old_image = Image.open(f'{AUTOMATION_CACHE_DIR}/{entry["id"]}/old/{old_png}')
+                new_image = Image.open(f'{AUTOMATION_CACHE_DIR}/{entry["id"]}/new/{new_png}')
 
                 if old_image.size != new_image.size:
                     is_modified = True
@@ -112,7 +112,7 @@ for entry in entries:
     if is_modified: # use the new PDF
         os.rename(pdf_path, 'pages_src/resources/' + pdf_filename)
     else: # use the old PDF
-        os.rename(f'{AUTOMATION_CACHE_DIR}/{pdf_filename}/old_{pdf_filename}', 'pages_src/resources/' + pdf_filename)
+        os.rename(f'{AUTOMATION_CACHE_DIR}/{entry["id"]}/old_{pdf_filename}', 'pages_src/resources/' + pdf_filename)
     
     # generate table row
     modified_time = datetime.now(timezone.utc) if is_modified else checksum_data[entry['id']]['last_modified']
