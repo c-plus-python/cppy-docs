@@ -22,7 +22,7 @@ AUTOMATION_CACHE_DIR = 'scripts/__automation_cache__'
 
 def output(msg: str):
     print('\033[94m', end='') # blue
-    print('(SCRIPT) >>> ')
+    print('(SCRIPT) >>> ', end='')
     print('\033[0m', end='') # reset
     print(msg)
 

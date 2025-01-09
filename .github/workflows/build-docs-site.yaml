@@ -13,6 +13,7 @@ on:
 env:
   INSTANCE: 'pages_src/cd'
   DOCKER_VERSION: '243.22562'
+  COMPILE_LIST: '' # Set in the job.
 
 jobs:
   compile-std:

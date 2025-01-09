@@ -22,6 +22,15 @@
         All downloadable files here are compiled automatically.
     </p>
 
+    <warning>
+        <p><b>Breaking Changes</b></p>
+        <p>
+            The CpPy standards are currently in draft phase.
+            The documents provided here are subject to change.
+            Breaking changes are very likely to occur.
+        </p>
+    </warning>
+
     <!--
         The contents of this page should be generated automatically with GitHub Actions.
         The following contents should be replaced.
